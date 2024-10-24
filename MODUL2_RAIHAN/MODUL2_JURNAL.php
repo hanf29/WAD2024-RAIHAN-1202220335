@@ -15,9 +15,9 @@ if ($_POST) {
 // jika MK_KI1201 atau MK_KU1202 atau MK_KU1102 kosong maka akan muncul pesan error
 // silakan taruh code kalian di bawah
 // **********************  2  ************************** 
-if (empty($MK1) || empty($MK2) || empty($MK3)) {
+if (empty($MK1) && empty($MK2) && empty($MK3)) {
     $error = "Matakuliah 1, 2, dan 3 tidak boleh kosong";
-} elseif ($MK1 <= 0 || $MK2 <= 0 || $MK3 <= 0) {
+} elseif ($MK1 <= 0 && $MK2 <= 0 && $MK3 <= 0) {
     $error = "Nilai Matakuliah 1, 2, 3 harus lebih dari nol";
 } else {
 
@@ -32,16 +32,13 @@ if (empty($MK1) || empty($MK2) || empty($MK3)) {
 // Untuk nilai peminatan sesuai dengan kondisi yang tertera pada jurnal
 // silakan taruh code kalian di bawah
 // **********************  3  ************************** 
-if (($MK2 = "AB" || $MK2= "A") && ($MK3 = "B" )) {
-    $hasil = "dapat mengambil peminatan Kimia Pangan";
+if (($MK2 == "AB" || $MK2 == "A") && ($MK3 == "B" || $MK3 == "AB" || $MK3 == "A")) {
+        $hasil = "Anda dapat mengambil peminatan Kimia Pangan";
 
-} elseif (($MK2 = "AB" || $MK2= "A" )&& ($MK3 = "B") && ($MK1 = "A")){
-    $hasil= "Bisa mengambil Peminatan Kimia Umum";
+} elseif (($MK1 == "A")){
+    $hasil= "Anda dapat mengambil Peminatan Kimia Umum";
 }
 
-  elseif (($MK2= "BC" || $MK2 = "C") && ($MK3 = "B" || $MK3 = "BC" || $MK3 = "C") && ($MK1 = "B" && $MK1 = "BC" && $MK1 = "C") ) {
-    $hasil = "Tidak bisa mengambil peminatan";
-  }
 // **********************  3  ************************** 
 ?>
 
