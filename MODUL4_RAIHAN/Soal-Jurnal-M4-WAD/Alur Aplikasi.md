@@ -1,11 +1,9 @@
 # Alur Aplikasi Sistem Informasi Akademik
-
 ## 1. Struktur Aplikasi
 Aplikasi ini menggunakan arsitektur yang mirip dengan MVC (Model-View-Controller) sederhana dengan komponen utama:
 - Controllers: Menangani logika bisnis
 - Views: Menampilkan interface ke user
 - Config: Konfigurasi aplikasi (database dll)
-
 ## 2. Alur Autentikasi
 
 ### 2.1 Login

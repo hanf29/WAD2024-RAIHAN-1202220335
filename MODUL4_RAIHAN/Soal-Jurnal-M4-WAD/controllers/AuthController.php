@@ -149,17 +149,28 @@ class AuthController
         if (isset($_POST['submit'])) {
             // TODO: Lengkapi fungsi register step 1
             // 1. Ambil id_pendaftaran dari form register step 1 dan simpan di variabel $id_pendaftaran
-            $id_pendaftaran = 
+            $id_pendaftaran = $_POST['id_pendaftaran'];
             // 2. Buat query untuk mencari pendaftaran berdasarkan id_pendaftaran dengan status 'lulus' dan simpan di variabel $query
+            $query = "SELECT * FROM pendaftaran WHERE id = $id_pendaftaran AND status = 'lulus'";
             // 3. Eksekusi query menggunakan mysqli_query dan simpan di variabel $result
+            $result = mysqli_query($conn, $query);
             // 4. Ambil hasil query menggunakan mysqli_fetch_assoc dan simpan di variabel $data_pendaftaran
+            if (mysqli_num_rows($result) == 1) {
+                $data_pendaftaran = mysqli_fetch_assoc($result);
+            } 
             // 5. Jika data hasil query ditemukan:
             //    - Set session id_pendaftaran dengan $id_pendaftaran
+            if (mysqli_num_rows($result) == 1) {
+                $_SESSION['id_pendaftaran'] = $id_pendaftaran;
             //    - Redirect ke register step 2 menggunakan header('Location: index.php?controller=auth&action=register_step_2')
             //    - Jangan lupa exit setelah redirect
+            header('Location: index.php?controller=auth&action=register_step_2');
+                exit;
+            } else {
+                $_SESSION['message'] = "Data Pendaftaran Tidak Ditemukan atau Tidak Lulus";
+            }
             // 6. Jika data hasil query tidak ditemukan:
             //    - Set session message error
-
         }
         
         include 'views/auth/register_step_1.php';
